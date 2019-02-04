@@ -1,0 +1,7 @@
+body {
+	overflow: hidden;
+}
+
+.clicked{
+	border: 1px solid red;
+}
