@@ -23,41 +23,41 @@ $(document).on("click", ".screen > div.new", function() {
     $(this).addClass('draggable');
     $(function() {
         var thisElement = $('.draggable');
-        thisElement.draggable({containment:'parent'});
+        thisElement.draggable({
+            containment: 'parent'
+        });
     });
 });
 $(document).keydown(function(e) {
     var thisElement = $('.clicked');
-    var posX = thisElement.position().left;
-    var posY = thisElement.position().top;
+    var elWidth = thisElement.width();
+    var elHeight = thisElement.height();
+    var posLeft = thisElement.position().left;
+    var posTop = thisElement.position().top;
     var screenHeight = screen.height();
     var screenWidth = screen.width();
-    if (posX > screenWidth - 15) {
-        posX = 0;
+   
+    if (!((posTop + elHeight + 5) > screenHeight)) {
+        if (e.keyCode == 40) {
+            thisElement.css("top", posTop = posTop + 15);
+        }
     }
-    if (posX < 0) {
-        posX = screenWidth;
+    if (!((posLeft - elWidth / 2 ) < 0)) {
+        if (e.keyCode == 37) {
+            thisElement.css("left", posLeft = posLeft - 15);
+        }
     }
-    if (posY > screenHeight - 15) {
-        posY = 0;
+    if (!((posTop - 15) < 0)) {
+        if (e.keyCode == 38) {
+            thisElement.css("top", posTop = posTop - 15);
+        }
     }
-    if (posY < 0) {
-        posY = screenHeight;
+    if (!((posLeft + elWidth) > screenWidth)) {
+        if (e.keyCode == 39) {
+            thisElement.css("left", posLeft = posLeft + 15);
+        }
     }
-    switch (e.keyCode) {
-        case 37:
-            thisElement.css("left", posX = posX - 15);
-            break;
-        case 38:
-            thisElement.css("top", posY = posY - 15);
-            break;
-        case 39:
-            thisElement.css("left", posX = posX + 15);
-            break;
-        case 40:
-            thisElement.css("top", posY = posY + 15);
-            break;
-    }
+    
 });
 
 function getRandomArbitrary(min, max) {
