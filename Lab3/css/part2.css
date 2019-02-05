@@ -1,7 +1,4 @@
-body {
-	overflow: hidden;
-}
-
 .clicked{
+	z-index: 100;
 	border: 1px solid red;
 }

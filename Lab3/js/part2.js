@@ -1,6 +1,4 @@
 var screen = $('.screen');
-var screenHeight = screen.height();
-var screenWidth = screen.width();
 $(function() {
     $("form").submit(function(event) {
         event.preventDefault();
@@ -10,20 +8,30 @@ $(function() {
 });
 
 function getRandomSquare() {
+    var screenHeight = screen.height();
+    var screenWidth = screen.width();
     var randomColor = getRandomColor();
     var randomWidth = getRandomArbitrary(20, 100);
     var randomHeight = getRandomArbitrary(20, 100);
-    var newElement = $("<div id='new' style='position:absolute;'></div>").css("background-color", randomColor).css("width", randomWidth + "px").css("height", randomHeight + "px").css("top", getRandomArbitrary(randomHeight, screenHeight - randomHeight) + "px").css("left", getRandomArbitrary(randomWidth, screenWidth - randomWidth) + "px");
+    var newElement = $("<div class='new' style='position:absolute;'></div>").css("background-color", randomColor).css("width", randomWidth + "px").css("height", randomHeight + "px").css("top", getRandomArbitrary(randomHeight, screenHeight - randomHeight) + "px").css("left", getRandomArbitrary(randomWidth, screenWidth - randomWidth) + "px");
     return newElement;
 };
-$(document).on("click", ".screen > div#new", function() {
+$(document).on("click", ".screen > div.new", function() {
     $('.clicked').removeClass('clicked');
+    $('.draggable').removeClass('draggable')
     $(this).addClass('clicked');
+    $(this).addClass('draggable');
+    $(function() {
+        var thisElement = $('.draggable');
+        thisElement.draggable({containment:'parent'});
+    });
 });
 $(document).keydown(function(e) {
     var thisElement = $('.clicked');
     var posX = thisElement.position().left;
     var posY = thisElement.position().top;
+    var screenHeight = screen.height();
+    var screenWidth = screen.width();
     if (posX > screenWidth - 15) {
         posX = 0;
     }
