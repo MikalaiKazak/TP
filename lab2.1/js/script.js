@@ -49,7 +49,7 @@ function slice(array, fn, begin, end) {
 function fn() {
 }
 
-let arr = [1, 2, 3]
+let arr = [1, 2, 3];
 console.log(arr);
 console.log(slice(arr, fn, 1, 2));
 
@@ -78,16 +78,15 @@ console.log(upperProps(user));
 // Функция принимает объект и должна вернуть Proxy для этого объекта.
 // Proxy должен перехватывать все попытки записи значений свойств и возводить это значение в квадрат
 
-let numberObject = {
-};
+let numberObject = {};
 
 let raisingNumToPow = {
-  set: function(obj, prop, value) {
-      if (!Number.isInteger(value)) {
-        throw new TypeError('The value is not an integer');
-      } else {
-        value = value * value;
-      }
+  set: function (obj, prop, value) {
+    if (!Number.isInteger(value)) {
+      throw new TypeError('The value is not an integer');
+    } else {
+      value = value * value;
+    }
     obj[prop] = value;
     return true;
   }

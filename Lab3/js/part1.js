@@ -32,10 +32,11 @@ function isEmpty(str) {
 $(document).on("click", ".screen > p#new", function() {
     $(this).remove();
 });
+
 $(document).on("click", ".stat", function() {
     var countElement = 0;
     var str = " ";
-    $('.screen > p#new').each(function(i) {
+    $('.screen > #new').each(function(i) {
         countElement++;
         str += $(this).text() + ".";
     })
